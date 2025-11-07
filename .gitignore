@@ -1,0 +1,49 @@
+# Backup files
+*.backup
+*.bak
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Editor directories and files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.project
+.classpath
+.settings/
+*.iml
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+tmp/
+temp/
+
+# OS generated files
+Thumbs.db
+Desktop.ini
+
+# Log files
+*.log
+logs/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Draft and WIP files
+*-draft.md
+*-wip.md
+draft/
+wip/
+
+# Private notes
+private/
+.private/
+*-private.md
+notes-private/
