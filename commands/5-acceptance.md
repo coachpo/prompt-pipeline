@@ -26,15 +26,19 @@ If critical context is missing or contradictory, pause and request clarification
 - Parse the input for acceptance criteria, telemetry/config expectations, verification commands, and residual risks; rely on no other files.
 - Convert these details into a QA checklist that tracks pass/fail status for every criterion.
 - Flag ambiguous items or missing evidence and request updates before continuing.
+- Recreate the implementer’s discovery trail: rerun key `start_search`/`rg` lookups for the modified symbols and configs so you understand exactly where changes landed. Store the resulting file + line references inside your checklist.
+- If the brief references external specs or contracts, fetch the authoritative versions via **DeepWiki** or **Context7** before testing and cite the sections used for comparison.
 
 ## 1. Evidence Inspection
 - Examine the referenced code paths and notes using **Desktop Commander** (`read_file`, `start_search`) or **Serena** (`find_symbol`, `find_referencing_symbols`) to confirm what changed.
 - Validate that the documented tests correspond to the stated behaviors and that traceability links remain intact.
+- When new functions were added, compare them against similar existing implementations surfaced via your repository searches to ensure conventions were preserved.
 
 ## 2. Automated Validation
 - Run every prescribed command (e.g., `make test`, `go test ./...`, contract/coverage jobs) via **Desktop Commander** (`start_process`, `interact_with_process`).
 - Capture logs, exit codes, and coverage artifacts; confirm thresholds meet or exceed the input’s expectations.
 - Investigate failures, collect repro data, and compare outcomes against the documented expected results.
+- If test evidence references snapshots or fixtures, use `start_search` to confirm they are unique updates rather than regressions elsewhere in the tree.
 
 ## 3. Exploratory / Manual Checks
 - Using realistic configs/fixtures from the brief, exercise the new paths (API calls, CLI flows, telemetry outputs).

@@ -26,6 +26,10 @@ If the payload lacks the required requirement data, stop and request Stage 1 to 
 - Parse the supplied user input for objectives, scope, constraints, and open questions; do not rely on any other files.
 - Proceed only if the task is non-trivial (e.g., multi-file impact, new behavior, ambiguous requirements, or external dependencies).
 - If trivial, record that no plan is necessary by adding a `plan.steps` entry explaining the decision, then await the next instruction.
+- Before labeling a task "trivial," perform at least one repository reconnaissance pass:
+  - Use **Desktop Commander** `start_search`/`rg` to locate existing functions or tests connected to the brief.
+  - Call **Serena** `find_symbol` on any referenced symbol names to confirm fan-out/fan-in depth.
+  - Document the search evidence (file + line) so downstream contributors know why deeper planning was or was not required.
 
 ## 1. Goal & Constraint Confirmation
 - Restate the target outcome, acceptance criteria, deadlines, and quality bars using the wording from the user input.
@@ -33,13 +37,14 @@ If the payload lacks the required requirement data, stop and request Stage 1 to 
 - Enumerate unresolved questions or assumptions; label each with an owner or required follow-up.
 
 ## 2. Context Gathering
-- When documentation, API guarantees, or standards are referenced, pull them via **DeepWiki** or **Context7** as needed.
-- Explore the codebase with **Desktop Commander** (`list_directory`, `read_file`, `start_search`) and **Serena** (`get_symbols_overview`, `find_symbol`) to map relevant packages, entry points, and tests.
+- When documentation, API guarantees, or standards are referenced, pull them via **DeepWiki** or **Context7** immediately; cite specific doc sections (path + heading) in your notes.
+- Explore the codebase with **Desktop Commander** (`list_directory`, `read_file`, `start_search`, `rg`) and **Serena** (`get_symbols_overview`, `find_symbol`, `find_referencing_symbols`) to map relevant packages, entry points, and tests.
+- Perform layered searches (e.g., API name, downstream models, telemetry) so the plan covers adjacent blast radii; log each search and summarize the impact.
 - Record findings with file paths and line references so every plan step cites concrete evidence.
 
 ## 3. Plan Drafting
 - Use **Sequential Thinking** to reason through Problem Definition → Research → Analysis → Synthesis before locking the plan.
-- Translate the reasoning into 3‑6 ordered steps (inspect current behavior, design, implement, validate, clean up).
+- Translate the reasoning into 3‑6 ordered steps (inspect current behavior, design, implement, validate, clean up). Every step should reference the evidence gathered above (file path + line or doc link).
 - For each step, note expected files/packages, MCP tooling, and prerequisites or dependencies.
 
 ## 4. Dependencies & Estimates

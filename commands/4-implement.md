@@ -25,16 +25,21 @@ If any prerequisite sections are missing, pause and request upstream owners to f
 ## 0. Intake & Focus
 - Parse the input for task order, target files, success metrics, and validation expectations; capture unknowns as follow-up questions.
 - Confirm tooling (language versions, build scripts, linters) described in the brief so environment surprises do not derail execution.
+- Before touching code, verify that discovery work from prior stages is still current:
+  - Re-run critical `start_search`/`rg` queries for the primary symbols to catch merges that landed since planning.
+  - Use **Serena** (`get_symbols_overview`) to snapshot current signatures so diffs reference concrete baselines.
+  - If the brief references external APIs or frameworks, refresh the authoritative docs through **Context7** or **DeepWiki** and link them in `implementation.changes`.
 
 ## 1. Environment Recon
-- Inspect the referenced packages using **Desktop Commander** (`list_directory`, `read_file`, `start_search`) to understand current implementations.
-- For semantic insight into functions and call chains, use **Serena** (`get_symbols_overview`, `find_symbol`, `find_referencing_symbols`).
-- Note baseline behavior, TODOs, or guardrails from the code so changes stay context-aware.
+- Inspect the referenced packages using **Desktop Commander** (`list_directory`, `read_file`, `start_search`, `rg`) to understand current implementations; favor layered searches (e.g., controller name, telemetry key, config flag) so no dependency is missed.
+- For semantic insight into functions and call chains, use **Serena** (`get_symbols_overview`, `find_symbol`, `find_referencing_symbols`) and attach the findings (file + line) to your working log.
+- Note baseline behavior, TODOs, or guardrails from the code so changes stay context-aware; include references inside `implementation.changes`.
 
 ## 2. Stepwise Execution
 - Follow the ordered tasks from the brief; keep each code change tightly scoped and commit-ready.
 - Before writing a function, outline its signature, invariants, and links to acceptance criteria/tests stated in the input.
 - Use **Serena** editing APIs (`insert_before_symbol`, `replace_symbol_body`, `write_file`) for symbol-aware modifications; fall back to **Desktop Commander** (`write_file`, `edit_block`) for file-level edits.
+- Each edit should cite the discovery search that justified it (e.g., “mirrors behavior in `foo/service.go:118`”); record this inside `implementation.changes`.
 - Maintain a lightweight progress log so other contributors can see which tasks are complete (update `plan.steps[*].status`).
 
 ## 3. Pattern Alignment
@@ -44,7 +49,7 @@ If any prerequisite sections are missing, pause and request upstream owners to f
 ## 4. Immediate Test Work
 - As soon as a function compiles, implement or update the mapped tests, fixtures, and mocks described in the input.
 - When ambiguity arises, revisit the user input and clarify before deviating from the specified scenarios.
-- Keep tests co-located with their targets unless the brief dictates another structure.
+- Keep tests co-located with their targets unless the brief dictates another structure. Run `start_search` for the test subject name to double-check for existing suites before adding new files.
 
 ## 5. Validation Loop
 - Execute the prescribed commands (e.g., `go test ./internal/foo`, `npm run contract-tests`, `make test`) via **Desktop Commander** (`start_process`, `interact_with_process`).

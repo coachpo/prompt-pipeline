@@ -26,6 +26,10 @@ If dependencies are missing, pause and request the prior stages to complete thei
 - Confirm that the user input clearly states acceptance criteria, planned code changes, and constraints; if not, request an updated brief.
 - Extract all behaviors, edge cases, and success metrics directly from the supplied text—do not rely on other files.
 - Note explicit quality bars (latency, SLAs, compliance, observability) that must shape test depth.
+- Run at least one repository sweep before mapping coverage:
+  - `start_search`/`rg` for the target module name to understand existing tests or helpers.
+  - **Serena** `find_referencing_symbols` for the primary function/class to reveal integration points your tests must cover.
+  - Summarize findings (file + line) in `testPlan.coverageMatrix` rationale columns.
 
 ## 1. Coverage Mapping
 - Map every acceptance criterion and planned change to concrete behaviors the tests must observe (API responses, edge-case handling, error propagation, logging, metrics).
@@ -34,7 +38,7 @@ If dependencies are missing, pause and request the prior stages to complete thei
 
 ## 2. Test Level Selection
 - Decide for each coverage point whether verification belongs in unit, integration, contract, or end-to-end suites.
-- Inspect the repository with **Desktop Commander** (`list_directory`, `read_file`, `start_search`) and **Serena** (`get_symbols_overview`, `find_symbol`, `find_referencing_symbols`) to locate the exact packages or directories to extend.
+- Inspect the repository with **Desktop Commander** (`list_directory`, `read_file`, `start_search`, `rg`) and **Serena** (`get_symbols_overview`, `find_symbol`, `find_referencing_symbols`) to locate the exact packages or directories to extend; prefer multiple searches (by API name, event key, telemetry string) to avoid shallow coverage.
 - Capture rationale for the chosen test level so future contributors understand the placement.
 
 ## 3. Scenario Definition
@@ -44,7 +48,7 @@ If dependencies are missing, pause and request the prior stages to complete thei
 
 ## 4. Fixtures, Mocks, and Test Data
 - Inventory required fixtures, doubles, helpers, or snapshot updates.
-- Before creating new assets, search with **Desktop Commander** or **Serena** to reuse existing fixtures (`start_search "FixtureName"`).
+- Before creating new assets, search with **Desktop Commander** or **Serena** to reuse existing fixtures (`start_search "FixtureName"`). When fixtures span services, call **DeepWiki** or **Context7** to verify contract schemas and note doc links alongside the fixture description.
 - Document any new test data (e.g., JSON payloads, SQL migrations) and the directories where they will live.
 
 ## 5. Success Criteria & Tooling
