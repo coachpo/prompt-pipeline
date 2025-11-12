@@ -16,12 +16,12 @@ description: Convert raw stakeholder input into an actionable, source-backed req
   - Seed `plan`, `testPlan`, `implementation`, `qaFindings` sections if absent so later stages inherit consistent keys.
 - **Guardrails:**
   - _Payload Reset:_ If `handoff/payload.json` already contains requirement data, warn the user, archive it as `payload-<ISO8601>.json`, and recreate the template from `handoff/README.md` before writing.
-  - _Search Depth:_ Whenever the brief affects existing code, run at least one repository-wide search (`start_search`, `rg`, `Serena find_symbol`) per impacted domain and log file + line evidence inside the payload notes.
+  - _Search Depth:_ Whenever the brief affects existing code, run at least one repository-wide search (`start_search`, `rg`, language-server symbol lookup) per impacted domain and log file + line evidence inside the payload notes.
 
 ## Tooling & Evidence Expectations
 - **MCP Reference First:** Consult `mcp/mcp_registry.md` and obey `mcp/mcp_rules.md` before choosing tooling. Prefer the MCP server specified by the registry’s priority matrix, only falling back to local commands when MCP coverage does not exist.
 - Desktop Commander: `start_search`, `rg --files`, `rg "<symbol>" -n` for inventorying code, configs, feature flags, migrations.
-- Serena: `get_symbols_overview`, `find_symbol`, `find_referencing_symbols` to map existing APIs, call graphs, and hidden dependencies.
+- IDE/LSP tooling: use workspace symbol search, call hierarchies, or `rg` queries to map existing APIs, call graphs, and hidden dependencies.
 - DeepWiki / Context7: pull official specs, changelogs, or internal standards when referenced by the stakeholder.
 - Record every search/doc call (tool, query, key findings) so downstream owners know what has already been vetted.
 

@@ -22,7 +22,7 @@ description: Execute the approved plan, task backlog, and test strategy to deliv
 - **MCP-first mandate:** Before running any local command, check `mcp/mcp_registry.md` for a capable tool and verify permissibility through `mcp/mcp_rules.md`. Document the rule ID or constraint evaluated in the payload when the choice is non-obvious.
 - Log every MCP invocation (tool name, intent, inputs, artifact references, success/failure) inside `implementation.commands[*].mcpLog`. If a tool is unavailable or fails twice, record the failure reason, fallback action, and linked rule allowing the fallback.
 - Desktop Commander remains the default for local file edits (`write_file`, `edit_block`), searches, listings, or shell processes. Persist the PID/command pairs so recovery flows can resume execution autonomously.
-- Serena handles semantic code navigation and modifications (`get_symbols_overview`, `find_symbol`, `insert_before_symbol`, `replace_symbol_body`); reference the exact symbol path in the payload evidence.
+- IDE/LSP tooling handles semantic code navigation and modifications (workspace symbol search, call hierarchies, structural edits); reference the exact symbol path or file/line pairing in the payload evidence.
 - DeepWiki / Context7 provide authoritative documentation lookups; capture doc versions, permalinks, and snippets (≤25 words) per lookup.
 - `mcp-shrimp-task-manager` (or successor) keeps task statuses synchronized; mirror every task state change both in the tool and `tasks.items[*]`.
 - Execute lint/test/build commands exactly as captured in `testPlan.validationCommands`. When a command must be adapted (e.g., different fixture path), document the delta, rationale, and resulting artifacts.
@@ -34,7 +34,7 @@ description: Execute the approved plan, task backlog, and test strategy to deliv
 - Maintain chronological, append-only logs capturing timestamps, executor identity, MCP/local command identifiers, and resulting artifacts for auditability.
 ## Workflow
 1. **Intake & Environment Confirmation** – Parse `$ARGUMENTS` plus `handoff/payload.json` to assemble the dependency-ordered leaf task queue. Confirm `meta`, `plan`, `tasks`, and `testPlan` fields exist and are current; if any prerequisite is missing or stale, set the stage status to `blocked` and stop until upstream remediation is logged. Snapshot toolchain versions, lint/format rules, and environment variables; store the snapshot reference in `implementation.changes`.
-2. **Baseline Recon** – Rehydrate prior search context via Serena/Desktop Commander to detect upstream drift (new commits, config changes, feature flags). Capture file hashes, symbol signatures, or schema versions before editing and attach them to the relevant plan/test IDs in the payload.
+2. **Baseline Recon** – Rehydrate prior search context via Desktop Commander plus IDE/LSP indexing to detect upstream drift (new commits, config changes, feature flags). Capture file hashes, symbol signatures, or schema versions before editing and attach them to the relevant plan/test IDs in the payload.
 3. **Leaf Task Execution Loop** – Iterate through the leaf queue autonomously:
    - Restate the task’s acceptance criteria, dependencies, and QA hooks at execution time.
    - Select the appropriate MCP toolchain; document rule compliance and the exact commands/scripts used.

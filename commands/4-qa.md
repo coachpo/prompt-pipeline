@@ -20,7 +20,7 @@ description: Convert the shared requirement + plan + task backlog into a concret
 ## Tooling & Evidence Expectations
 - **MCP Reference First:** Always consult `mcp/mcp_registry.md` and follow `mcp/mcp_rules.md` when selecting tooling. Choose the registry’s preferred MCP server for each activity (analysis, documentation, automation) before falling back to local commands.
 - Desktop Commander searches (`start_search`, `rg`) to inventory existing tests, helpers, and fixtures for reuse.
-- Serena lookups (`find_symbol`, `find_referencing_symbols`) to understand integration points and ensure coverage beyond the obvious code paths.
+- IDE/LSP symbol lookups or targeted Desktop Commander searches to understand integration points and ensure coverage beyond the obvious code paths.
 - DeepWiki / Context7 for external API contracts, schema definitions, or compliance standards that influence test design.
 - `mcp-shrimp-task-manager` or similar backlog MCPs to keep task coverage status in sync when updating `tasks.statusSummary`.
 - Sequential Thinking to walk through coverage mapping before locking scenarios.

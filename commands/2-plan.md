@@ -18,7 +18,7 @@ description: Translate the approved requirement payload into a transparent, depe
 ## Tooling & Evidence Expectations
 - **MCP Reference First:** Review `mcp/mcp_registry.md` and comply with `mcp/mcp_rules.md` before selecting tooling. Favor the registry’s recommended MCP server for each activity and fall back to local tools only when MCP coverage is unavailable or out of scope.
 - Desktop Commander searches (`start_search`, `rg`) to verify file ownership, existing utilities, and blast radius.
-- Serena symbol lookups (`find_symbol`, `find_referencing_symbols`) for fan-in/out confirmation before declaring work “trivial”.
+- IDE/LSP symbol lookups or targeted `start_search`/`rg` queries for fan-in/out confirmation before declaring work “trivial”.
 - DeepWiki / Context7 for standards, API contracts, or version notes referenced in the plan.
 - Sequential Thinking to structure reasoning and expose assumptions before locking the plan.
 

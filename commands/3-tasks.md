@@ -18,9 +18,9 @@ description: Bridge strategic planning and execution by translating the approved
   - Ensure every plan step has at least one atomic leaf task in `tasks.items` and every leaf references exactly one parent.
 
 ## Tooling & Evidence Expectations
-- **MCP Reference First:** Consult `mcp/mcp_registry.md` and obey `mcp/mcp_rules.md` before choosing tooling. Favor registry-prioritized MCP servers (e.g., `mcp-shrimp-task-manager` for backlog structuring, `Sequential Thinking` for reasoning, `Serena` for code mapping) and fall back to local commands only when MCP coverage does not exist.
+- **MCP Reference First:** Consult `mcp/mcp_registry.md` and obey `mcp/mcp_rules.md` before choosing tooling. Favor registry-prioritized MCP servers (e.g., `mcp-shrimp-task-manager` for backlog structuring, `Sequential Thinking` for reasoning, Desktop Commander for repo evidence) and fall back to local commands only when MCP coverage does not exist.
 - `mcp-shrimp-task-manager`: generate, split, and manage structured task lists, dependencies, and verification criteria.
-- Serena + Desktop Commander: inspect repositories, collect evidence (files + lines), and ensure each task references concrete code artifacts.
+- Desktop Commander + IDE/LSP tooling: inspect repositories, collect evidence (files + lines), and ensure each task references concrete code artifacts.
 - DeepWiki / Context7: capture external standards, API docs, or architectural decisions linked to particular tasks.
 - Record every MCP/local search (tool, query, findings) referenced inside task notes so downstream owners inherit the research trail.
 

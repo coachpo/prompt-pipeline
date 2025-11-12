@@ -210,7 +210,7 @@ Context7 (official docs)
 **Code Operations**:
 
 ```
-Serena (LSP-based analysis)
+Desktop Commander (structured repo/file operations)
   → Local grep/ripgrep
     → Manual file inspection
       → Request user for specific files
@@ -325,9 +325,9 @@ Status: <Success | Retry | Fallback>
 
 | Field          | Description                   | Example                                                              |
 | -------------- | ----------------------------- | -------------------------------------------------------------------- |
-| **Service**    | MCP server name from registry | `Serena`, `Context7`, `Sequential Thinking`                          |
+| **Service**    | MCP server name from registry | `Desktop Commander`, `MCP Server Time`, `Sequential Thinking`        |
 | **Trigger**    | Concrete reason for call      | `Locate all usages of deprecated function`                           |
-| **Parameters** | Key parameters (concise)      | `find_referencing_symbols(symbol="oldApi", path="src/")`             |
+| **Parameters** | Key parameters (concise)      | `convert_time(source_timezone="UTC", time="2025-11-12T01:00", target_timezone="Asia/Shanghai")` |
 | **Result**     | Outcome summary               | `23 references found across 8 files`                                 |
 | **Status**     | Execution status              | `Success`, `Retry (429, reduced scope)`, `Fallback (timeout → grep)` |
 
@@ -337,10 +337,10 @@ Status: <Success | Retry | Fallback>
 
 ```
 【MCP Call Report】
-Service: Serena
-Trigger: Locate all references to deprecated function `calculateTotal`
-Parameters: find_referencing_symbols(symbol="calculateTotal", path="src/")
-Result: 23 references found across 8 files (src/billing, src/reports)
+Service: MCP Server Time
+Trigger: Convert November release checkpoint from Pacific Time to Shanghai support hours
+Parameters: convert_time(source_timezone="America/Los_Angeles", time="2025-11-12T09:00", target_timezone="Asia/Shanghai")
+Result: 2025-11-13T01:00:00+08:00 (Asia/Shanghai) confirmed for coordination
 Status: Success
 ```
 

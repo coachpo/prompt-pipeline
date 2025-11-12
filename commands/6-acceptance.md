@@ -17,9 +17,9 @@ description: Independently verify the delivered work using the supplied payload,
   - Append pass/fail/blocked annotations to every validated `tasks.items[*]` (leaf and parent) and `testPlan.scenarios[*]`; ensure notes cite evidence IDs.
 
 ## Tooling & Evidence Expectations
-- **MCP Reference First:** Follow `mcp/mcp_registry.md` and `mcp/mcp_rules.md` when picking tooling. Use the registry’s preferred MCP server (e.g., Serena for code verification, DeepWiki/Context7 for docs, Desktop Commander for execution, `mcp-shrimp-task-manager` for task status updates) before defaulting to other methods.
+- **MCP Reference First:** Follow `mcp/mcp_registry.md` and `mcp/mcp_rules.md` when picking tooling. Use the registry’s preferred MCP server (e.g., Desktop Commander for execution, DeepWiki/Context7 for docs, `mcp-shrimp-task-manager` for task status updates) before defaulting to other methods.
 - Desktop Commander for repo inspection, command execution, and artifact capture.
-- Serena for verifying symbol changes, referencing call graphs, and confirming affected files.
+- IDE/LSP tooling or Desktop Commander searches for verifying symbol changes, referencing call graphs, and confirming affected files.
 - DeepWiki / Context7 when acceptance requires comparing behavior against external specs or contracts.
 - Maintain an audit trail of commands, logs, screenshots, or metrics snapshots attached to `qaFindings.evidence`.
 

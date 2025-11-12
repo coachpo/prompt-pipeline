@@ -4,7 +4,6 @@
 
 - [Overview](#overview)
 - [Server Registry](#server-registry)
-  - [Code Analysis & Refactoring](#code-analysis--refactoring)
   - [Documentation & Knowledge](#documentation--knowledge)
   - [Task Management & Planning](#task-management--planning)
   - [Browser Automation & Testing](#browser-automation--testing)
@@ -26,40 +25,6 @@ This document catalogs Model Context Protocol (MCP) servers, providing technical
 ---
 
 ## Server Registry
-
-### Code Analysis & Refactoring
-
-#### Serena
-
-**Repository:** https://github.com/oraios/serena
-
-**Core Capabilities:**
-- Semantic code analysis using Language Server Protocol (LSP)
-- Multi-language symbol extraction and reference tracking
-- Batch regex-based code transformation with dry-run support
-- Integrated shell command execution for build/test/lint workflows
-
-**Use Cases:**
-- Codebase onboarding and architectural analysis
-- API migration and deprecation workflows
-- Cross-repository refactoring operations
-- Pre-commit validation and compliance checks
-
-**Priority Matrix:**
-- vs **Desktop Commander**: Repository-scoped operations → **Serena**; cross-application/filesystem → **Desktop Commander**
-- vs **Sequential Thinking**: Planning phase → **Sequential Thinking**; execution/validation → **Serena**
-
-**API Surface:**
-
-| Function | Description | Usage Pattern |
-|----------|-------------|---------------|
-| `get_symbols_overview(path?, depth?)` | Generate hierarchical symbol tree (packages, files, types, functions) | Initial codebase mapping |
-| `find_symbol(name, path?)` | Locate symbol definitions | Pre-refactoring symbol resolution |
-| `find_referencing_symbols(symbol)` | List all reference locations | Impact analysis for changes |
-| `replace_regex(glob, pattern, replacement, dry_run?)` | Batch regex replacement with preview | API/import path migration |
-| `execute_shell_command(args[], workdir?, timeout_ms?)` | Execute build/test/lint commands | Post-change validation |
-
----
 
 ### Documentation & Knowledge
 
@@ -413,7 +378,7 @@ This document catalogs Model Context Protocol (MCP) servers, providing technical
 - System diagnostics and troubleshooting
 
 **Priority Matrix:**
-- vs **Serena**: Repository-agnostic operations → **Desktop Commander**; code-aware operations → **Serena**
+- vs **Local IDE/LSP tooling**: Use IDE/LSP features for semantic code navigation; use **Desktop Commander** for filesystem and process automation
 - vs **Playwright**: Native filesystem/process → **Desktop Commander**; web automation → **Playwright**
 
 **API Surface:**
@@ -432,6 +397,44 @@ This document catalogs Model Context Protocol (MCP) servers, providing technical
 | `start_search(query)` / `get_more_search_results` / `stop_search` | Filesystem search | Content discovery |
 | `get_config` / `set_config_value` | Configuration management | Server settings |
 | `get_recent_tool_calls` / `get_usage_stats` | Observability | Usage analytics |
+
+---
+
+#### MCP Server Time
+
+**Repository:** https://github.com/modelcontextprotocol/servers/tree/main/src/time
+
+**Core Capabilities:**
+- Real-time clock queries for any IANA timezone with DST awareness
+- Lossless timezone conversion and validation between arbitrary regions
+- Deterministic "local" timezone override via `--local-timezone` for consistent scheduling defaults
+
+**Use Cases:**
+- Coordinating deploy/maintenance windows across distributed teams
+- Generating compliance-friendly timestamps for payloads, audit trails, or announcements
+- Verifying stakeholder-supplied meeting times before creating plans or tasks
+
+**Priority Matrix:**
+- vs **Desktop Commander**: Use **Desktop Commander** for filesystem/process automation; use **MCP Server Time** strictly for temporal intelligence
+- vs **Documentation & Knowledge Servers**: Use MCP Server Time when you already know the policy and just need authoritative timestamps; use documentation servers when researching the policy itself
+
+**API Surface:**
+
+| Function | Description | Usage Pattern |
+|----------|-------------|---------------|
+| `get_current_time(timezone?)` | Return the current timestamp for a requested timezone or the configured default | Confirm "now" before scheduling deployments or status updates |
+| `convert_time(source_timezone, time, target_timezone)` | Translate a wall-clock time between regions | Validate that handoff/checkpoint times align across teams |
+
+**Configuration Notes:**
+
+```json
+"mcp-server-time": {
+  "command": "uvx",
+  "args": ["mcp-server-time", "--local-timezone=Asia/Shanghai"]
+}
+```
+
+Set `--local-timezone` to ensure the server defaults to the stakeholder’s region when no timezone argument is passed.
 
 ---
 
