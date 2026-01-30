@@ -4,32 +4,32 @@ This directory contains 6 production-ready SKILLs that guide software developmen
 
 ## 📚 The Six Skills
 
-### 1️⃣ [Specify Requirements](./specify-requirements/SKILL.md)
+### 1️⃣ [Specifying Requirements](./specifying-requirements/SKILL.md)
 **When to use**: Starting new features, converting product specs into engineering requirements  
 **What it does**: Transforms vague stakeholder requests into structured requirements with testable acceptance criteria  
 **Output**: `handoff/payload.json` with requirements, constraints, and evidence
 
-### 2️⃣ [Create Plan](./create-plan/SKILL.md)
+### 2️⃣ [Creating a Plan](./creating-plan/SKILL.md)
 **When to use**: After requirements approved, before breaking down work  
 **What it does**: Creates evidence-backed execution plan with ordered steps and risk assessment  
 **Output**: Plan steps, dependencies, risks, and artifacts in payload
 
-### 3️⃣ [Create Tasks](./create-tasks/SKILL.md)
+### 3️⃣ [Creating Tasks](./creating-tasks/SKILL.md)
 **When to use**: After plan approved, before implementation  
 **What it does**: Decomposes plan into atomic, assignable development tasks  
 **Output**: Hierarchical task backlog with dependencies and file references
 
-### 4️⃣ [Design QA Strategy](./design-qa-strategy/SKILL.md)
+### 4️⃣ [Designing a QA Strategy](./designing-qa-strategy/SKILL.md)
 **When to use**: After tasks defined, before coding begins  
 **What it does**: Maps every requirement to test scenarios with validation commands  
 **Output**: Coverage matrix, test scenarios, fixtures, and validation commands
 
-### 5️⃣ [Implement Solution](./implement-solution/SKILL.md)
+### 5️⃣ [Implementing a Solution](./implementing-solution/SKILL.md)
 **When to use**: After QA strategy approved, ready to code  
 **What it does**: Autonomously executes tasks, writes code and tests, captures evidence  
 **Output**: Code changes, test results, command logs with full traceability
 
-### 6️⃣ [Acceptance Testing](./acceptance-testing/SKILL.md)
+### 6️⃣ [Running Acceptance Tests](./running-acceptance-tests/SKILL.md)
 **When to use**: After implementation complete, before merging/deploying  
 **What it does**: Independently verifies work meets acceptance criteria  
 **Output**: Go/no-go decision with evidence and issue tracking
@@ -41,21 +41,21 @@ This directory contains 6 production-ready SKILLs that guide software developmen
 ### Full Feature Development
 
 ```
-1. "Use specify-requirements skill for: Add user profile export to PDF"
-2. "Use create-plan skill with payload.json"
-3. "Use create-tasks skill with payload.json"  
-4. "Use design-qa-strategy skill with payload.json"
-5. "Use implement-solution skill with payload.json"
-6. "Use acceptance-testing skill with payload.json"
+1. "Use specifying-requirements skill for: Add user profile export to PDF"
+2. "Use creating-plan skill with payload.json"
+3. "Use creating-tasks skill with payload.json"  
+4. "Use designing-qa-strategy skill with payload.json"
+5. "Use implementing-solution skill with payload.json"
+6. "Use running-acceptance-tests skill with payload.json"
 ```
 
 ### Fast Track (Trivial Changes)
 
 ```
-1. "Use specify-requirements for: Fix typo in welcome email"
-2. "Use create-plan with payload.json" (marks as trivial, single step)
-3. "Use implement-solution with payload.json" (quick fix)
-4. "Use acceptance-testing with payload.json" (verify)
+1. "Use specifying-requirements for: Fix typo in welcome email"
+2. "Use creating-plan with payload.json" (marks as trivial, single step)
+3. "Use implementing-solution with payload.json" (quick fix)
+4. "Use running-acceptance-tests with payload.json" (verify)
 ```
 
 ---
@@ -78,17 +78,17 @@ These skills align to the Claude Skills custom development cookbook:
 ## 🔄 Workflow Dependencies
 
 ```
-specify-requirements (Stage 1)
+specifying-requirements (Stage 1)
     ↓ requires: requirement.summary + acceptanceCriteria
-create-plan (Stage 2)
+creating-plan (Stage 2)
     ↓ requires: plan.steps
-create-tasks (Stage 3)
+creating-tasks (Stage 3)
     ↓ requires: tasks.items
-design-qa-strategy (Stage 4)
+designing-qa-strategy (Stage 4)
     ↓ requires: testPlan.scenarios
-implement-solution (Stage 5)
+implementing-solution (Stage 5)
     ↓ requires: implementation.changes
-acceptance-testing (Stage 6)
+running-acceptance-tests (Stage 6)
     ↓ produces: qaFindings.status (approved/rejected)
 ```
 
@@ -101,9 +101,9 @@ All skills operate on `handoff/payload.json`:
 ```json
 {
   "meta": {
-    "currentStage": "1-specify",
-    "lastUpdatedBy": "specify-requirements-skill",
-    "lastUpdatedAt": "2026-01-30T08:00:00Z"
+    "currentStage": "1-specifying-requirements",
+    "lastUpdatedBy": "specifying-requirements-skill",
+    "lastUpdatedAt": "YYYY-MM-DDTHH:MM:SSZ"
   },
   "requirement": { /* Stage 1 */ },
   "plan": { /* Stage 2 */ },
@@ -138,14 +138,14 @@ Complete lineage:
 - Searchable history in single JSON file
 
 ### Autonomous
-Stage 5 (Implement Solution) runs without approval loops:
+Stage 5 (Implementing a Solution) runs without approval loops:
 - Executes task queue in dependency order
 - Retries failed tests once
 - Continues on blocks
 - Captures all evidence
 
 ### Defensible
-Stage 6 (Acceptance) provides audit trail:
+Stage 6 (Running Acceptance Tests) provides audit trail:
 - Replays all validation commands
 - Performs exploratory testing
 - Documents every finding
@@ -159,7 +159,7 @@ Each skill supports the cookbook layout:
 
 ```
 skill-name/
-├── SKILL.md           # Required: Instructions + examples + rules
+├── SKILL.md           # Required: Overview and workflow
 ├── EXAMPLES.md        # Optional: Extra usage examples (kept concise)
 ├── REFERENCE.md       # Optional: Supporting notes or schemas
 ├── TROUBLESHOOTING.md # Optional: Common failures + fixes
@@ -179,7 +179,6 @@ Notes:
 
 - **[../README.md](../README.md)** - Project overview and quick start
 - **[../handoff/README.md](../handoff/README.md)** - Payload schema and usage
-- **[../mcp/mcp_rules.md](../mcp/mcp_rules.md)** - Tool selection governance
 
 ---
 

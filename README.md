@@ -6,32 +6,31 @@ A skill-based, six-stage workflow for software development. It turns stakeholder
 
 - `skills/` – Six production-ready workflow skills
 - `handoff/` – Shared payload contract and living state file
-- `mcp/` – MCP governance and server registry for tool selection
 
 ## The Six Skills
 
-1. **Specify Requirements** – `skills/specify-requirements/SKILL.md`  
+1. **Specifying Requirements** – `skills/specifying-requirements/SKILL.md`  
    Capture stakeholder intent as testable requirements.
-2. **Create Plan** – `skills/create-plan/SKILL.md`  
+2. **Creating a Plan** – `skills/creating-plan/SKILL.md`  
    Sequence work with dependencies and risks.
-3. **Create Tasks** – `skills/create-tasks/SKILL.md`  
+3. **Creating Tasks** – `skills/creating-tasks/SKILL.md`  
    Break plan steps into atomic, assignable tasks.
-4. **Design QA Strategy** – `skills/design-qa-strategy/SKILL.md`  
+4. **Designing a QA Strategy** – `skills/designing-qa-strategy/SKILL.md`  
    Map requirements to tests, fixtures, and commands.
-5. **Implement Solution** – `skills/implement-solution/SKILL.md`  
+5. **Implementing a Solution** – `skills/implementing-solution/SKILL.md`  
    Execute tasks, write code/tests, capture evidence.
-6. **Acceptance Testing** – `skills/acceptance-testing/SKILL.md`  
+6. **Running Acceptance Tests** – `skills/running-acceptance-tests/SKILL.md`  
    Independently verify outcomes and issue a go/no-go decision.
 
 ## Quick Start
 
 ```
-"Use specify-requirements skill for: Add dark mode toggle to settings page"
-"Use create-plan with payload.json"
-"Use create-tasks with payload.json"
-"Use design-qa-strategy with payload.json"
-"Use implement-solution with payload.json"
-"Use acceptance-testing with payload.json"
+"Use specifying-requirements skill for: Add dark mode toggle to settings page"
+"Use creating-plan with payload.json"
+"Use creating-tasks with payload.json"
+"Use designing-qa-strategy with payload.json"
+"Use implementing-solution with payload.json"
+"Use running-acceptance-tests with payload.json"
 ```
 
 ## Shared Payload
@@ -41,9 +40,9 @@ All stages share a single source of truth: `handoff/payload.json`
 ```json
 {
   "meta": {
-    "currentStage": "1-specify",
-    "lastUpdatedBy": "specify-requirements-skill",
-    "lastUpdatedAt": "2026-01-30T08:00:00Z"
+    "currentStage": "1-specifying-requirements",
+    "lastUpdatedBy": "specifying-requirements-skill",
+    "lastUpdatedAt": "YYYY-MM-DDTHH:MM:SSZ"
   },
   "requirement": { /* Stage 1 output */ },
   "plan": { /* Stage 2 output */ },
@@ -65,8 +64,6 @@ Each skill:
 
 - `skills/README.md` – Skills overview and layout
 - `handoff/README.md` – Payload schema and usage
-- `mcp/mcp_rules.md` – Tool selection governance
-- `mcp/mcp_registry.md` – Available MCP servers
 
 ## Contributing
 

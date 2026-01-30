@@ -4,7 +4,7 @@ All workflow skills exchange data through `handoff/payload.json`. This single JS
 
 ## How It Works
 
-1. **Stage 1 (Specify Requirements)** creates or refreshes `payload.json`
+1. **Stage 1 (Specifying Requirements)** creates or refreshes `payload.json`
 2. Each subsequent skill reads the payload, validates prerequisites, and updates its section
 3. Skills preserve all other sections - never overwriting upstream work
 4. The `meta` section tracks current stage and last update timestamp
@@ -14,14 +14,14 @@ All workflow skills exchange data through `handoff/payload.json`. This single JS
 
 ```bash
 # Stage 1: Creates payload.json from stakeholder input
-"Use specify-requirements skill for: [your requirement]"
+"Use specifying-requirements skill for: [your requirement]"
 
 # Stages 2-6: Read and update the payload
-"Use create-plan with payload.json"
-"Use create-tasks with payload.json"
-"Use design-qa-strategy with payload.json"  
-"Use implement-solution with payload.json"
-"Use acceptance-testing with payload.json"
+"Use creating-plan with payload.json"
+"Use creating-tasks with payload.json"
+"Use designing-qa-strategy with payload.json"  
+"Use implementing-solution with payload.json"
+"Use running-acceptance-tests with payload.json"
 ```
 
 ## Payload Schema
@@ -30,9 +30,9 @@ All workflow skills exchange data through `handoff/payload.json`. This single JS
 ```json
 {
   "meta": {
-    "currentStage": "1-specify",
-    "lastUpdatedBy": "specify-requirements-skill",
-    "lastUpdatedAt": "2026-01-30T08:00:00Z"
+    "currentStage": "1-specifying-requirements",
+    "lastUpdatedBy": "specifying-requirements-skill",
+    "lastUpdatedAt": "YYYY-MM-DDTHH:MM:SSZ"
   }
 }
 ```
@@ -68,7 +68,7 @@ All workflow skills exchange data through `handoff/payload.json`. This single JS
 }
 ```
 
-**Owned by**: Stage 1 (Specify Requirements)  
+**Owned by**: Stage 1 (Specifying Requirements)  
 **Required by**: All subsequent stages  
 **Purpose**: Define what to build and how success is measured
 
@@ -107,7 +107,7 @@ All workflow skills exchange data through `handoff/payload.json`. This single JS
 }
 ```
 
-**Owned by**: Stage 2 (Create Plan)  
+**Owned by**: Stage 2 (Creating a Plan)  
 **Required by**: Stages 3-6  
 **Purpose**: Ordered execution strategy with evidence
 
@@ -155,7 +155,7 @@ All workflow skills exchange data through `handoff/payload.json`. This single JS
 }
 ```
 
-**Owned by**: Stage 3 (Create Tasks)  
+**Owned by**: Stage 3 (Creating Tasks)  
 **Required by**: Stages 4-6  
 **Purpose**: Atomic, assignable work items with traceability
 
@@ -210,7 +210,7 @@ All workflow skills exchange data through `handoff/payload.json`. This single JS
 }
 ```
 
-**Owned by**: Stage 4 (Design QA Strategy)  
+**Owned by**: Stage 4 (Designing a QA Strategy)  
 **Required by**: Stages 5-6  
 **Purpose**: Comprehensive test coverage mapping
 
@@ -254,7 +254,7 @@ All workflow skills exchange data through `handoff/payload.json`. This single JS
         "id": "command-1",
         "command": "npm test -- routes/users.test.js",
         "taskId": "task-1",
-        "timestamp": "2026-01-30T08:45:23Z",
+        "timestamp": "YYYY-MM-DDTHH:MM:SSZ",
         "exitCode": 0,
         "duration": "2.3s",
         "output": "Test output summary"
@@ -264,7 +264,7 @@ All workflow skills exchange data through `handoff/payload.json`. This single JS
 }
 ```
 
-**Owned by**: Stage 5 (Implement Solution)  
+**Owned by**: Stage 5 (Implementing a Solution)  
 **Required by**: Stage 6  
 **Purpose**: Complete implementation audit trail
 
@@ -275,7 +275,7 @@ All workflow skills exchange data through `handoff/payload.json`. This single JS
 {
   "qaFindings": {
     "status": "approved|rejected|blocked",
-    "validatedAt": "2026-01-30T09:15:00Z",
+    "validatedAt": "YYYY-MM-DDTHH:MM:SSZ",
     "validatedBy": "qa-engineer-name",
     "evidence": [
       {
@@ -283,7 +283,7 @@ All workflow skills exchange data through `handoff/payload.json`. This single JS
         "type": "test-run|performance|screenshot",
         "description": "What was verified",
         "artifact": "path/to/evidence.log",
-        "timestamp": "2026-01-30T09:10:00Z"
+        "timestamp": "YYYY-MM-DDTHH:MM:SSZ"
       }
     ],
     "issues": [
@@ -302,7 +302,7 @@ All workflow skills exchange data through `handoff/payload.json`. This single JS
     ],
     "validationLog": [
       {
-        "timestamp": "2026-01-30T09:08:00Z",
+        "timestamp": "YYYY-MM-DDTHH:MM:SSZ",
         "action": "Ran unit tests",
         "command": "npm test",
         "result": "passed|failed|blocked",
@@ -313,7 +313,7 @@ All workflow skills exchange data through `handoff/payload.json`. This single JS
 }
 ```
 
-**Owned by**: Stage 6 (Acceptance Testing)  
+**Owned by**: Stage 6 (Running Acceptance Tests)  
 **Final output**: Go/no-go decision  
 **Purpose**: Independent verification and release decision
 
@@ -330,7 +330,7 @@ Each skill must:
 
 ## Archiving Payloads
 
-When Stage 1 (Specify Requirements) finds existing payload data:
+When Stage 1 (Specifying Requirements) finds existing payload data:
 1. Warns user about overwrite
 2. Archives as `payload-{ISO8601}.json`
 3. Creates fresh payload from template
@@ -346,20 +346,20 @@ $ cat handoff/payload.json
 # After Stage 1
 $ cat handoff/payload.json
 {
-  "meta": {"currentStage": "1-specify", ...},
+  "meta": {"currentStage": "1-specifying-requirements", ...},
   "requirement": {...}
 }
 
 # After Stage 2
 {
-  "meta": {"currentStage": "2-plan", ...},
+  "meta": {"currentStage": "2-creating-plan", ...},
   "requirement": {...},
   "plan": {...}
 }
 
 # After Stage 6
 {
-  "meta": {"currentStage": "6-acceptance", ...},
+  "meta": {"currentStage": "6-running-acceptance-tests", ...},
   "requirement": {...},
   "plan": {...},
   "tasks": {...},
