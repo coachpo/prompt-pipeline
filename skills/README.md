@@ -175,11 +175,11 @@ Notes:
 
 ---
 
-## 📚 Additional Documentation
+## 📚 Project Documentation
 
-- **[CONVERSION_SUMMARY.md](./CONVERSION_SUMMARY.md)** - How prompts became skills
-- **[QUICK_REFERENCE.md](./QUICK_REFERENCE.md)** - Cheat sheet with examples
-- **[../commands/README.md](../commands/README.md)** - Original workflow guide
+- **[../README.md](../README.md)** - Project overview and quick start
+- **[../handoff/README.md](../handoff/README.md)** - Payload schema and usage
+- **[../mcp/mcp_rules.md](../mcp/mcp_rules.md)** - Tool selection governance
 
 ---
 

@@ -377,9 +377,6 @@ $ cat handoff/payload.json
 - **Don't edit manually** - Let skills manage the structure
 - **Archive old payloads** - Keep history when starting new features
 
-## Migration Notes
+## Skills Reference
 
-Legacy workflow used separate `commands/*.md` prompt files.  
-All workflow logic now integrated into skills at `.agent/skills/`.
-
-See [Skills README](../.agent/skills/README.md) for usage details.
+See [Skills README](../skills/README.md) for usage details.
