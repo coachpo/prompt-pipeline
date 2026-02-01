@@ -3,7 +3,7 @@
 ## Example: Pagination tasks
 
 **Input**
-Use `creating-tasks` with the pagination plan in `handoff/payload.json`.
+Use `creating-tasks` with the pagination plan in the handoff payload.
 
 **Output**
 Creates parent and leaf tasks with dependencies:

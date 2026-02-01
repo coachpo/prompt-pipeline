@@ -1,6 +1,6 @@
 ---
 name: creating-tasks
-description: Decompose an approved plan into atomic, traceable tasks with owners and acceptance criteria.
+description: Decomposes an approved plan into atomic, traceable tasks with owners and acceptance criteria. Used after a plan is approved and before implementation.
 ---
 
 # Creating Tasks
@@ -13,11 +13,11 @@ Translate plan steps into a hierarchical backlog of actionable tasks that can be
 - When distributing work across contributors
 
 ## Inputs
-- Required: `handoff/payload.json` with `plan.steps`
+- Required: handoff payload with `plan.steps`
 - Optional: existing `tasks` section to refine
 
 ## Outputs
-- Updated `handoff/payload.json` with `tasks.items` and `tasks.dependencies`
+- Updated handoff payload with `tasks.items` and `tasks.dependencies`
 - `meta.currentStage` updated; all other sections preserved
 
 ## Checklist
@@ -31,7 +31,7 @@ Translate plan steps into a hierarchical backlog of actionable tasks that can be
 1. Load the plan and validate prerequisites.
 2. Create parent tasks that mirror plan steps.
 3. Split into atomic leaf tasks with verification criteria.
-4. Add dependencies and update payload.
+4. Add dependencies and return the updated payload.
 
 ## Examples
 See `EXAMPLES.md` for task breakdowns.

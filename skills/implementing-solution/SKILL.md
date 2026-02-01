@@ -1,6 +1,6 @@
 ---
 name: implementing-solution
-description: Execute approved tasks, implement code and tests, run validations, and record evidence.
+description: Executes approved tasks, implements code and tests, runs validations, and records evidence. Used after requirements, plan, tasks, and QA strategy are approved.
 ---
 
 # Implementing a Solution
@@ -12,7 +12,7 @@ Work through the task backlog in dependency order, producing production-ready co
 - When implementation can proceed autonomously
 
 ## Inputs
-- Required: `handoff/payload.json` with `requirement`, `plan`, `tasks`, `testPlan`
+- Required: handoff payload with `requirement`, `plan`, `tasks`, `testPlan`
 - Optional: existing `implementation` section to resume
 
 ## Outputs

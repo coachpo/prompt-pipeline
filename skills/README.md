@@ -7,7 +7,7 @@ This directory contains 6 production-ready SKILLs that guide software developmen
 ### 1️⃣ [Specifying Requirements](./specifying-requirements/SKILL.md)
 **When to use**: Starting new features, converting product specs into engineering requirements  
 **What it does**: Transforms vague stakeholder requests into structured requirements with testable acceptance criteria  
-**Output**: `handoff/payload.json` with requirements, constraints, and evidence
+**Output**: Updated handoff payload (JSON) with requirements, constraints, and evidence
 
 ### 2️⃣ [Creating a Plan](./creating-plan/SKILL.md)
 **When to use**: After requirements approved, before breaking down work  
@@ -42,20 +42,20 @@ This directory contains 6 production-ready SKILLs that guide software developmen
 
 ```
 1. "Use specifying-requirements skill for: Add user profile export to PDF"
-2. "Use creating-plan skill with payload.json"
-3. "Use creating-tasks skill with payload.json"  
-4. "Use designing-qa-strategy skill with payload.json"
-5. "Use implementing-solution skill with payload.json"
-6. "Use running-acceptance-tests skill with payload.json"
+2. "Use creating-plan skill with the latest handoff payload"
+3. "Use creating-tasks skill with the latest handoff payload"  
+4. "Use designing-qa-strategy skill with the latest handoff payload"
+5. "Use implementing-solution skill with the latest handoff payload"
+6. "Use running-acceptance-tests skill with the latest handoff payload"
 ```
 
 ### Fast Track (Trivial Changes)
 
 ```
 1. "Use specifying-requirements for: Fix typo in welcome email"
-2. "Use creating-plan with payload.json" (marks as trivial, single step)
-3. "Use implementing-solution with payload.json" (quick fix)
-4. "Use running-acceptance-tests with payload.json" (verify)
+2. "Use creating-plan with the latest handoff payload" (marks as trivial, single step)
+3. "Use implementing-solution with the latest handoff payload" (quick fix)
+4. "Use running-acceptance-tests with the latest handoff payload" (verify)
 ```
 
 ---
@@ -96,7 +96,7 @@ running-acceptance-tests (Stage 6)
 
 ## 📋 Shared Payload
 
-All skills operate on `handoff/payload.json`:
+All skills operate on a shared handoff payload (JSON) that you pass between stages:
 
 ```json
 {
@@ -119,6 +119,7 @@ Each skill:
 - Updates its output section
 - Preserves all other sections
 - Updates meta.currentStage
+- Does not assume a fixed file path for the payload
 
 ---
 
@@ -135,7 +136,7 @@ Every decision backed by:
 Complete lineage:
 - Requirements → Plan Steps → Tasks → Tests → Code → Issues
 - Every change links back to original requirement
-- Searchable history in single JSON file
+- Searchable history in a single JSON payload
 
 ### Autonomous
 Stage 5 (Implementing a Solution) runs without approval loops:
@@ -178,7 +179,7 @@ Notes:
 ## 📚 Project Documentation
 
 - **[../README.md](../README.md)** - Project overview and quick start
-- **[../handoff/README.md](../handoff/README.md)** - Payload schema and usage
+- The payload schema is documented in this README and in each skill's examples.
 
 ---
 

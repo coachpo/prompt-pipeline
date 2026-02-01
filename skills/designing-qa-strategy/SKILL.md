@@ -1,6 +1,6 @@
 ---
 name: designing-qa-strategy
-description: Map requirements, plan steps, and tasks to test scenarios, fixtures, and validation commands.
+description: Maps requirements, plan steps, and tasks to test scenarios, fixtures, and validation commands. Used after tasks are defined and before implementation.
 ---
 
 # Designing a QA Strategy
@@ -12,11 +12,11 @@ Create a concrete test plan that covers acceptance criteria with traceable scena
 - When defining "done" criteria and validation gates
 
 ## Inputs
-- Required: `handoff/payload.json` with `requirement`, `plan`, and `tasks`
+- Required: handoff payload with `requirement`, `plan`, and `tasks`
 - Optional: existing `testPlan` section to refine
 
 ## Outputs
-- Updated `handoff/payload.json` with `testPlan.coverageMatrix` and `testPlan.scenarios`
+- Updated handoff payload with `testPlan.coverageMatrix` and `testPlan.scenarios`
 - Validation commands and fixtures documented when applicable
 
 ## Checklist
@@ -30,7 +30,7 @@ Create a concrete test plan that covers acceptance criteria with traceable scena
 1. Validate prerequisites and load requirements, plan, tasks.
 2. Enumerate testable behaviors and map coverage.
 3. Draft scenarios with fixtures and commands.
-4. Update payload and note gaps.
+4. Return the updated payload and note gaps.
 
 ## Examples
 See `EXAMPLES.md` for scenario templates.

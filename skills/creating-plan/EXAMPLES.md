@@ -3,7 +3,7 @@
 ## Example: Pagination plan
 
 **Input**
-Use `creating-plan` with the pagination requirement in `handoff/payload.json`.
+Use `creating-plan` with the pagination requirement in the handoff payload.
 
 **Output**
 Adds a plan section with ordered steps and risks:

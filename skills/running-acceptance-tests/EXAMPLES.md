@@ -3,7 +3,7 @@
 ## Example: Acceptance report
 
 **Input**
-Use `running-acceptance-tests` for the pagination implementation in `handoff/payload.json`.
+Use `running-acceptance-tests` for the pagination implementation in the handoff payload.
 
 **Output**
 Records an approval decision with evidence:

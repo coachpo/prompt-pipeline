@@ -3,7 +3,7 @@
 ## Example: Pagination test plan
 
 **Input**
-Use `designing-qa-strategy` with pagination tasks in `handoff/payload.json`.
+Use `designing-qa-strategy` with pagination tasks in the handoff payload.
 
 **Output**
 Creates coverage matrix and scenarios:

@@ -6,7 +6,7 @@
 "Add pagination to the user list API. It is too slow with 10,000 users."
 
 **Assistant outcome**
-Updates `handoff/payload.json` with a requirement section:
+Returns an updated handoff payload with a requirement section:
 
 ```json
 {

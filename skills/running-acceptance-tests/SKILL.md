@@ -1,6 +1,6 @@
 ---
 name: running-acceptance-tests
-description: Independently verify delivered work by replaying validations, exploring edge cases, and issuing a go/no-go decision.
+description: Independently verifies delivered work by replaying validations, exploring edge cases, and issuing a go/no-go decision. Used after implementation is complete and tests are passing.
 ---
 
 # Running Acceptance Tests
@@ -13,7 +13,7 @@ Independently validate the implementation by replaying tests, performing explora
 - When stakeholders need proof of completion
 
 ## Inputs
-- Required: `handoff/payload.json` with `implementation` and `testPlan`
+- Required: handoff payload with `implementation` and `testPlan`
 - Optional: existing `qaFindings` section to update
 
 ## Outputs

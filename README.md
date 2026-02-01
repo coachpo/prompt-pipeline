@@ -5,7 +5,6 @@ A skill-based, six-stage workflow for software development. It turns stakeholder
 ## Repository Layout
 
 - `skills/` – Six production-ready workflow skills
-- `handoff/` – Shared payload contract and living state file
 
 ## The Six Skills
 
@@ -26,16 +25,16 @@ A skill-based, six-stage workflow for software development. It turns stakeholder
 
 ```
 "Use specifying-requirements skill for: Add dark mode toggle to settings page"
-"Use creating-plan with payload.json"
-"Use creating-tasks with payload.json"
-"Use designing-qa-strategy with payload.json"
-"Use implementing-solution with payload.json"
-"Use running-acceptance-tests with payload.json"
+"Use creating-plan with the latest handoff payload"
+"Use creating-tasks with the latest handoff payload"
+"Use designing-qa-strategy with the latest handoff payload"
+"Use implementing-solution with the latest handoff payload"
+"Use running-acceptance-tests with the latest handoff payload"
 ```
 
 ## Shared Payload
 
-All stages share a single source of truth: `handoff/payload.json`
+All stages share a single source of truth: the handoff payload (JSON) passed between stages
 
 ```json
 {
@@ -63,7 +62,6 @@ Each skill:
 ## Documentation
 
 - `skills/README.md` – Skills overview and layout
-- `handoff/README.md` – Payload schema and usage
 
 ## Contributing
 
